@@ -1,0 +1,22 @@
+{
+  "name": "Image Resizer",
+  "short_name": "Resizer",
+  "description": "Resize one or many images, preview results, and download individually or as a ZIP.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#09090b",
+  "theme_color": "#09090b",
+  "icons": [
+    {
+      "src": "/icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
