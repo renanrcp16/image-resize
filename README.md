@@ -5,6 +5,12 @@
 A fast, privacy-friendly image resizer that runs **entirely in your browser**.  
 Resize **multiple images at once**, preview results, and download images **individually** or as a **ZIP** — without uploading files to a server.
 
+## 🚀 Live App
+
+You can use the app here:
+
+👉 **https://rcp16-image-resize.vercel.app**
+
 ## Features
 
 - **Client-side processing** (no uploads, avoids server payload limits)
