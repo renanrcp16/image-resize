@@ -1,5 +1,7 @@
 # Image Resizer
 
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+
 A fast, privacy-friendly image resizer that runs **entirely in your browser**.  
 Resize **multiple images at once**, preview results, and download images **individually** or as a **ZIP** — without uploading files to a server.
 
@@ -96,6 +98,8 @@ src/
       resize.ts
 ```
 
-## License
+---
 
-MIT (or your preferred license)
+## 📄 License
+
+MIT License © 2026 renanrcp16
