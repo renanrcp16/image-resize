@@ -1,34 +1,101 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Image Resizer
 
-## Getting Started
+A fast, privacy-friendly image resizer that runs **entirely in your browser**.  
+Resize **multiple images at once**, preview results, and download images **individually** or as a **ZIP** — without uploading files to a server.
 
-First, run the development server:
+## Features
+
+- **Client-side processing** (no uploads, avoids server payload limits)
+- Batch resize multiple images at once
+- Download:
+  - **Single image**
+  - **All images as ZIP**
+- Resize modes (when both width and height are provided):
+  - **Fit inside** (preserve ratio, no crop)
+  - **Crop (cover)** (preserve ratio, crop to match target ratio)
+  - **Pad (contain)** (preserve ratio, add white padding)
+  - **Stretch (fill)** (distort to match exact size)
+- **Quality scale (1–5)** for lossy formats
+- **Progress bar** + batch processing to reduce memory spikes
+
+## How it works
+
+This project uses the browser’s native image pipeline:
+
+- `createImageBitmap()` for efficient decoding
+- `<canvas>` rendering for resizing
+- `canvas.toBlob()` for encoding (JPEG/PNG/WebP)
+- `JSZip` for ZIP creation
+
+## Tech stack
+
+- Next.js (App Router)
+- TypeScript
+- Tailwind CSS
+- JSZip (client-side ZIP creation)
+
+## Getting started
+
+### 1) Install dependencies
+
+```bash
+npm install
+```
+
+### 2) Run locally
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3) Build
 
-## Learn More
+```bash
+npm run build
+npm start
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Usage
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Upload one or more images (JPG, PNG, WebP)
+2. Choose:
+   - Width (required)
+   - Height (optional)
+   - Resize mode
+   - Output format (keep / JPEG / PNG / WebP)
+   - Quality (1–5)
+3. Click **Generate preview**
+4. Download:
+   - Individual images
+   - Or **Download ZIP**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Limits & performance notes
 
-## Deploy on Vercel
+Client-side resizing depends on the user’s device:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Large images and large batches can use significant RAM.
+- The app processes images in **batches** (default: 5 at a time) to reduce memory spikes.
+- If you want to tune performance:
+  - Adjust the batch size constant in `src/app/page.tsx`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Project structure
+
+```txt
+src/
+  app/
+    page.tsx
+  components/
+    ProgressBar.tsx
+  lib/
+    image/
+      types.ts
+      utils.ts
+      canvas.ts
+      resize.ts
+```
+
+## License
+
+MIT (or your preferred license)
